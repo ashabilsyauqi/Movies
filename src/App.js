@@ -1,58 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { getMovieList, searchMovie } from "./api";
+import { searchMovie } from "./api";
+import PopularMovieList from "./Components/popularMovieList"; // Impor komponen
+
 const App = () => {
   const [popularmovies, setPopularMovies] = useState([]);
+  const [searching, setSearching] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState(""); // State untuk menyimpan keyword pencarian
 
-  useEffect(() => {
-    // getMovieList()
-    getMovieList().then((result) => {
-      setPopularMovies(result);
-    });
-  }, []);
-
-  console.log({ popularmovies: popularmovies });
-
-  const PopularMovieList = () => {
-    // const baseUrl = process.env.REACT_APP_BASEIMGURL
-
-    return popularmovies.map((movie, i) => {
-      return (
-        <div className="movie-wrapper" key={i}>
-          <div className="movie-title">{movie.title}</div>
-          <img
-            className="movie-image"
-            src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`}
-            alt="Images"
-          />
-          <div className="movie-date">{movie.release_date}</div>
-          <div className="movie-rate">{movie.vote_average}</div>
-        </div>
-      );
-    });
-  };
-
-  const search = async (q) => {
-    if (q.length > 0) {
-      const query = await searchMovie(q);
+  const handleSearch = async () => {
+    if (searchKeyword.length > 0) {
+      const query = await searchMovie(searchKeyword);
       setPopularMovies(query.results);
-      // console.log({ query: query });
+      setSearching(true); // Set status searching menjadi true setelah pencarian dilakukan
     }
   };
 
   return (
     <div className="App">
+      <h1>Movie's</h1>
       <header className="App-header">
-        <h1>Movie's</h1>
         <input
           placeholder="cari film"
           className="movie-search"
-          onChange={({ target }) => search(target.value)}
+          onChange={({ target }) => setSearchKeyword(target.value)} // Set keyword pencarian saat mengetik
         />
-        <div className="movie-container">
-          <PopularMovieList />
-        </div>
+        <button className="btn" onClick={handleSearch}>
+          Search
+        </button>{" "}
+        {/* Gunakan handleSearch saat tombol ditekan */}
       </header>
+
+      <div className="movie-container">
+        {searching && <PopularMovieList movies={popularmovies} />}
+      </div>
     </div>
   );
 };

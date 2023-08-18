@@ -1,16 +1,18 @@
 .App {
   text-align: center;
+  /* background-color: #292929; */
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: red; */
+  /* min-height: 100vh; */
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  gap: 20px;
 }
 
 .App-link {
@@ -18,6 +20,7 @@
 }
 
 .movie-container {
+  padding: 20px;
   width: 100%;
   /* background-color: antiquewhite; */
   display: flex;
@@ -33,25 +36,159 @@
   width: 350px;
   background-color: white;
   color: #292929;
+  
   border-radius: 10px;
   padding: 10px 0;
 }
 .movie-image {
   width: 100%;
   height: 500px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .movie-search {
   height: 48px;
   font-size: 24px;
-  margin-bottom: 32px;
-  padding: 16px;
-  font-weight: bold;
+  border-radius: 10px;
+  /* margin-bottom: 32px; */
+  padding: 10px 15px ;
+  /* font-weight: bold; */
   width: 475px;
+
+  border: 1px solid grey;
 }
 
 .movie-title {
-  padding: 10px 0;
+  /* padding: 10px 20px; */
+
   height: 60px;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
+
+.movie-date{
+  padding: 10px 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.movie-rate{
+  /* padding: 10px 20px; */
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card {
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.999s;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  background-color: #6A2C70;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border: 10px solid #6A2C70;
+  border-radius: 10px;
+  justify-content: center;
+  font-size: 24px;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  background-color: #F08A5D;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border: 10px solid #F08A5D;
+  border-radius: 10px;
+  justify-content: center;
+  font-size: 24px;
+  transform: rotateY(180deg);
+}
+
+
+
+
+/* button search */
+
+.btn {
+  border: 1px solid grey;
+  position: relative;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1em 2.5em;
+  display: inline-block;
+  border-radius: 6em;
+  transition: all .2s;
+  font-family: inherit;
+  font-weight: 500;
+  color: black;
+  background-color: white;
+ }
+ 
+ .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+ }
+ 
+ .btn::after {
+  background-color: #fff;
+ }
+ 
+ .btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+ }
