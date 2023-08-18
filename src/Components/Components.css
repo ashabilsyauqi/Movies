@@ -35,3 +35,8 @@
   font-size: 24px;
   font-weight: 600;
 }
+
+.movie-position{
+  background-size: cover;
+  background-position: center;
+}
