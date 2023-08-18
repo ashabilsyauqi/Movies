@@ -6,24 +6,33 @@ const PopularMovieList = ({ movies }) => {
     <>
       {movies.length > 0 && (
         <>
-          {movies.map((movie, i) => (
-            <div className="card" key={i}>
-              {/* <div className="movie-title">{movie.title}</div> */}
-              <img
-                className="movie-image"
-                src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`}
-                alt="Images"
-              />
-               <div className="movie-date">{movie.release_date.split("-")[0]}</div> {/* Ambil tahun dengan split */}
-              <div className="movie-rate">Rating : {movie.vote_average}</div>
-            </div>
-          ))}
+          {movies.map((movie, i) => {
+            // Cek apakah ada gambar sebelum menampilkan data
+            if (movie.poster_path) {
+              return (
+                <div
+                  className="card"
+                  key={i}
+                  style={{
+                    backgroundImage: `url(${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path})`,
+                  }}
+                >
+                  <div className="desc-movie">
+                  <div className="movie-date">{movie.release_date.split("-")[0]}</div> {/* Ambil tahun dengan split */}
+                    <div className="movie-rate">
+                       ⭐:{parseFloat(movie.vote_average).toFixed(1)}
+                    </div>
+                  </div>
+                </div>
+              );
+            } else {
+              return null; // Jika tidak ada gambar, return null
+            }
+          })}
         </>
       )}
     </>
   );
 };
-
-
 
 export default PopularMovieList;

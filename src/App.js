@@ -18,16 +18,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Movie's</h1>
+      <h1 className="Title">Ashabil Movie's</h1>
       <header className="App-header">
-        <input
-          placeholder="cari film"
-          className="movie-search"
-          onChange={({ target }) => setSearchKeyword(target.value)} // Set keyword pencarian saat mengetik
-        />
-        <button className="btn" onClick={handleSearch}>
-          Search
-        </button>{" "}
+       
+          <input
+            placeholder="cari film"
+            className="movie-search"
+            onChange={({ target }) => setSearchKeyword(target.value)} // Set keyword pencarian saat mengetik
+          />
+          <button className="btn" onClick={handleSearch}>
+            Search
+          </button>{" "}
+        
         {/* Gunakan handleSearch saat tombol ditekan */}
       </header>
 
