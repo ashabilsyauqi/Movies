@@ -1,6 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Impor file CSS Bootstrap
 import './Components.css'
+import ModalCard from "./ModalCard";
+
 
 const PopularMovieList = ({ movies }) => {
   return (
@@ -23,6 +25,7 @@ const PopularMovieList = ({ movies }) => {
               <div className="movie-rate">
                 ⭐ : {parseFloat(movie.vote_average).toFixed(1)}
               </div>
+              <ModalCard />
             </div>
           </div>
         ))
