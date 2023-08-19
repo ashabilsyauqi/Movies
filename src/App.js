@@ -19,9 +19,9 @@ const App = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Ashabil Movie's</h1>
-      <div className="row justify-content-center">
+    <div className="  bg-dark">
+      <h1 className="text-center mb-4 text-light">Ashabil Movie's</h1>
+      <div className="row justify-content-center mb-5">
         <div className="col-md-6">
           <div className="input-group mb-3">
             <form

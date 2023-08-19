@@ -1,24 +1,8 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import Modal from "react-modal";
-import { useState } from "react";
+import './Components.css'
 
-export default function ModalCard() {
-  let subtitle
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-
+export default function ModalCard({ movie, closeModal }) {
   const customStyles = {
     content: {
       top: '50%',
@@ -30,20 +14,28 @@ export default function ModalCard() {
     },
   };
 
-
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
       <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
+        isOpen={!!movie}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>THIS MODAL IS BEING DEVELOP</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
+        {movie && (
+          <div>
+
+
+            <h2>{movie.title}</h2>
+            <p>Release Date: {movie.release_date}</p>
+            <p>Rating: {parseFloat(movie.vote_average).toFixed(1)}</p>
+            {/* Tambahkan informasi lainnya tentang film di sini */}
+            <button onClick={closeModal}>Close</button>
+            
+
+
+          </div>
+        )}
       </Modal>
     </div>
   );
